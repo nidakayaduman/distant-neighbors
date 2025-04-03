@@ -35,6 +35,18 @@ function App() {
     criteria.reduce((acc, cur) => ({ ...acc, [cur.key]: '' }), {})
   );
 
+  const backgroundStyle = {
+    backgroundImage: "url('/city.jpg')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed',
+    minHeight: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    paddingTop: '40px',
+  };
+
   const handleWeightChange = (key, value) => {
     if (value === '') {
       setWeights((prev) => ({ ...prev, [key]: '' }));
@@ -64,6 +76,7 @@ function App() {
         setResult('The specified city could not be found. Please try again.');
         return;
       }
+
       const sorted = Object.entries(similarities)
         .filter(([key]) => key !== upperCity)
         .sort((a, b) => b[1] - a[1]);
@@ -76,54 +89,56 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <div className="form-section">
-        <h2>Identify Your Current City</h2>
-        <div className="form-row">
-          <label htmlFor="cityInput">City</label>
-          <input
-            list="city-list"
-            id="cityInput"
-            placeholder="Search or select a city..."
-            value={city}
-            onChange={(e) => setCity(e.target.value.toUpperCase())}
-          />
-          <datalist id="city-list">
-            {cities.map((city) => (
-              <option key={city} value={city} />
-            ))}
-          </datalist>
-        </div>
-      </div>
-
-      <div className="form-section">
-        <h2>Distribute 100 Points Among the Following Criteria</h2>
-        {criteria.map(({ key, label }) => (
-          <div key={key} className="form-row">
-            <label>{label}</label>
+    <div style={backgroundStyle}>
+      <div className="container">
+        <div className="form-section">
+          <h2>Identify Your Current City</h2>
+          <div className="form-row">
+            <label htmlFor="cityInput">City</label>
             <input
-              type="number"
-              min="0"
-              max="100"
-              value={weights[key]}
-              onChange={(e) => handleWeightChange(key, e.target.value)}
+              list="city-list"
+              id="cityInput"
+              placeholder="Search or select a city..."
+              value={city}
+              onChange={(e) => setCity(e.target.value.toUpperCase())}
             />
+            <datalist id="city-list">
+              {cities.map((city) => (
+                <option key={city} value={city} />
+              ))}
+            </datalist>
           </div>
-        ))}
-        <p className={`weight-total ${totalWeight !== 100 ? 'invalid' : 'valid'}`}>
-          Total: {totalWeight} / 100
-        </p>
+        </div>
+
+        <div className="form-section">
+          <h2>Distribute 100 Points Among the Following Criteria</h2>
+          {criteria.map(({ key, label }) => (
+            <div key={key} className="form-row">
+              <label>{label}</label>
+              <input
+                type="number"
+                min="0"
+                max="100"
+                value={weights[key]}
+                onChange={(e) => handleWeightChange(key, e.target.value)}
+              />
+            </div>
+          ))}
+          <p className={`weight-total ${totalWeight !== 100 ? 'invalid' : 'valid'}`}>
+            Total: {totalWeight} / 100
+          </p>
+        </div>
+
+        <button
+          className="button"
+          onClick={handleSubmit}
+          disabled={totalWeight !== 100 || !cities.includes(city.trim())}
+        >
+          Submit
+        </button>
+
+        {result && <p className="result-text">{result}</p>}
       </div>
-
-      <button
-        className="button"
-        onClick={handleSubmit}
-        disabled={totalWeight !== 100 || !cities.includes(city.trim())}
-      >
-        Submit
-      </button>
-
-      {result && <p className="result-text">{result}</p>}
     </div>
   );
 }
