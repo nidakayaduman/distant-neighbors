@@ -11,7 +11,7 @@ This React-based application helps users discover cities in Turkey that are soci
 ## ✨ Features
 
 - 🔍 **City Similarity Detection** using a pre-calculated cosine similarity matrix
-- 🎚️ **Slider-based Weight Input** for prioritizing criteria
+- 🎚️ **Weight Input** for prioritizing criteria
 - 🔒 **Total Score Validation** – Enforces 100-point total requirement
 - 🧩 **Material UI Components** for clean and responsive design
 - 📱 **Responsive Layout** – Optimized for desktop and mobile
