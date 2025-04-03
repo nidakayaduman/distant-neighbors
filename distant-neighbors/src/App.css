@@ -1,4 +1,11 @@
-/* Genel body ayarları */
+/* Genel ayarlar */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -8,25 +15,13 @@ body {
   justify-content: center;
   align-items: flex-start;
   position: relative;
-}
-
-/* Arka plan karartma katmanı */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.45); /* siyah saydamlık */
-  backdrop-filter: blur(2px);           /* blur efekti */
-  z-index: -1;                          /* arkada kalsın */
+  background: url('https://images.pexels.com/photos/31437523/pexels-photo-31437523/free-photo-of-scenic-view-of-bosphorus-bridge-in-istanbul.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center fixed;
+  background-size: cover;
 }
 
 /* Ana kutu */
 .container {
   background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(4px);
   margin: 40px 16px;
   padding: 40px;
   border-radius: 16px;
@@ -34,6 +29,7 @@ body::before {
   max-width: 700px;
   width: 100%;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* Başlık */
@@ -79,11 +75,13 @@ h2 {
   outline: none;
   box-sizing: border-box;
   width: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* yeni */
+  transition: all 0.2s ease; /* yeni */
 }
 
-.form-row input:hover,
 .form-row input:focus {
-  border-color: #9095A1;
+  border-color: #AC1947;
+  box-shadow: 0 0 6px rgba(172, 25, 71, 0.3); /* yeni */
 }
 
 /* Buton */
@@ -102,6 +100,10 @@ h2 {
 .button:hover:not(:disabled) {
   background: #911239;
   transform: scale(1.02);
+}
+
+.button:active {
+  transform: scale(0.97); /* yeni */
 }
 
 .button:disabled {
@@ -139,6 +141,7 @@ h2 {
   .form-row {
     flex-direction: column;
     align-items: flex-start;
+    width: 100%;
   }
 
   .form-row label,
@@ -147,7 +150,40 @@ h2 {
   }
 
   .container {
-    margin: 24px 12px;
-    padding: 28px;
+    margin: 20px 8px;
+    padding: 24px;
   }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  .form-row input {
+    font-size: 13px;
+    height: 32px;
+  }
+
+  .button {
+    font-size: 15px;
+    padding: 10px 20px;
+  }
+
+  .weight-total {
+    font-size: 13px;
+  }
+
+  .result-text {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 20px 12px;
+  }
+}
+
+/* Scrollbar gizle */
+body::-webkit-scrollbar {
+  display: none;
 }

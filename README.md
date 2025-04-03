@@ -35,7 +35,8 @@ npm install
 ### 3. Install Material UI
 Material UI (MUI) and emotion styling are required:
 ```bash
-npm install @mui/material @emotion/react @emotion/styled 
+npm install @mui/material @emotion/react @emotion/styled recharts
+
 
 ```
 

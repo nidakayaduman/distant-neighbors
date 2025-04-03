@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
+} from 'recharts';
 
 const criteria = [
   { key: 'politics', label: 'Political Orientation' },
@@ -36,7 +39,6 @@ function App() {
   );
 
   const backgroundStyle = {
-    backgroundImage: "url('/city.jpg')",
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundAttachment: 'fixed',
@@ -45,6 +47,7 @@ function App() {
     justifyContent: 'center',
     alignItems: 'flex-start',
     paddingTop: '40px',
+    width: '100%'
   };
 
   const handleWeightChange = (key, value) => {
@@ -73,18 +76,23 @@ function App() {
       const similarities = data[upperCity];
 
       if (!similarities) {
-        setResult('The specified city could not be found. Please try again.');
+        setResult([{ name: 'Error', score: 0 }]);
         return;
       }
 
       const sorted = Object.entries(similarities)
         .filter(([key]) => key !== upperCity)
         .sort((a, b) => b[1] - a[1]);
-      const [mostSimilarCity, similarityScore] = sorted[0];
-      setResult(`${mostSimilarCity} has a similarity score of ${(similarityScore * 100).toFixed(2)}%.`);
+
+      const top3 = sorted.slice(0, 3).map(([name, score]) => ({
+        name,
+        score: parseFloat((score * 100).toFixed(2))
+      }));
+
+      setResult(top3);
     } catch (error) {
       console.error("FETCH ERROR:", error);
-      setResult(`Hata: ${error.message}`);
+      setResult([{ name: 'Error', score: 0 }]);
     }
   };
 
@@ -124,7 +132,7 @@ function App() {
               />
             </div>
           ))}
-          <p className={`weight-total ${totalWeight !== 100 ? 'invalid' : 'valid'}`}>
+          <p className={`weight-total ${totalWeight !== 100 ? 'invalid' : 'valid'}`} >
             Total: {totalWeight} / 100
           </p>
         </div>
@@ -137,7 +145,25 @@ function App() {
           Submit
         </button>
 
-        {result && <p className="result-text">{result}</p>}
+        {result && Array.isArray(result) && (
+          <div className="chart-section">
+            <h3>Top 3 Most Similar Cities</h3>
+            <ul>
+              {result.map((r) => (
+                <li key={r.name}>{r.name} - {r.score}%</li>
+              ))}
+            </ul>
+            <ResponsiveContainer width="100%" height={250}>
+              <BarChart data={result} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis unit="%" />
+                <Tooltip />
+                <Bar dataKey="score" fill="#AC1947" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        )}
       </div>
     </div>
   );
