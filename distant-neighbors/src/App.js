@@ -433,7 +433,7 @@ function App() {
   const handleCosineSimilarity = async () => {
     if (!city || !cities.includes(city.trim().toUpperCase())) return;
     try {
-      const response = await fetch('cosine_similarity_matrix_new.json');
+      const response = await fetch('city_cosine_similarity_matrix_new.json');
       const data = await response.json();
       const upperCity = city.trim().toUpperCase();
       const similarities = data[upperCity];
