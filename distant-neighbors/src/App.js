@@ -107,7 +107,52 @@ Your results are shaped by your personal preferences.
 Every city is compared with 6 main groups and 20+ features.
 Cosine similarity is calculated for each group.
 You can set each group's importance (0-5) and see "Weighted Similarity" results.
-Results are shown as percentages and on the graph.`}
+Results are shown as percentages and on the graph.
+
+6. What is Equal Similarity?
+When you use the "Equal Similarity" option, the system compares your selected city to all other cities by
+considering all available data groups equally.
+You do not need to choose any priorities or weights.
+
+How Does It Work?
+All Data Combined:
+For each city, we gather all available information (such as economy, population, education, healthcare,
+safety, culture, climate, and political preferences).
+All these numbers are combined into a single list of values for each city.
+
+No Group Has Extra Importance:
+Each group (for example, “healthcare” or “climate”) is considered just as important as every other group.
+No group has more effect on the result than the others.
+
+Cosine Similarity Calculation:
+We use a mathematical method called cosine similarity.
+This method compares the lists of numbers for two cities and gives a score between 0 and 1:
+
+1 means the cities are very similar.
+
+0 means the cities are very different.
+
+What Does the Result Mean?
+The system shows you a list of cities that are most similar to your chosen city.
+This is based on all features, with no group being more important than another.
+
+When Should I Use Equal Similarity?
+
+If you want an overall comparison using all available data,
+
+If you do not want to set your own priorities,
+
+If you are curious which cities are most similar in general,
+
+…then “Equal Similarity” is the best choice for you!
+
+Summary:
+With “Equal Similarity,” you get a general, unbiased comparison of all cities, based on all the features in our database.
+No extra settings are needed.
+Just select your city and see which other cities are most similar to it—using all the data, equally!
+
+Tip:
+If you want to customize the importance of each group (for example, if “climate” matters most to you), try the “Weighted Similarity” option instead.`}
         </div>
       )}
     </div>
