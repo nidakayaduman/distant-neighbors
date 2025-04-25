@@ -282,7 +282,7 @@ function App() {
     if (totalWeight === 0) return;
 
     try {
-      const response = fetch('city_features_by_city.json');
+      const response = await fetch('city_features_by_city.json');
       const data = await response.json();
       const userCityFeatures = data[city.trim().toUpperCase()];
       if (!userCityFeatures) {
