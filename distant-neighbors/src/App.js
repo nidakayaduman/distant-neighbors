@@ -38,118 +38,121 @@ function InfoBox() {
         >
 {`How Do We Calculate City Similarity?
 1. Data Groups and Features
-
-Each city is represented and compared using these groups:
+Each city is represented and compared using several groups of features:
 
 Socioeconomic:
+
 GSH2023 (Gross Domestic Product)
+
 İSSİZLİK2023 (Unemployment Rate)
+
 OKUMAYAZMAORANİ2023 (Literacy Rate)
+
 NUFUS2023 (Population)
 
-Healthcare: DOKTORSAYİSİ2023 (Doctor Number)
+Healthcare:
 
-Safety: SUCORANLARİ2023 (Crime Rate), KAZASAYİSİ2023 (Accident Number)
+DOKTORSAYİSİ2023 (Doctor Number)
 
-Culture/Arts: TİYATRO2023 (Theater Number)
+Safety:
 
-Climate: İKLİMOCAK, …, İKLİMARALİK (Monthly average temperatures from January to December)
+SUCORANLARİ2023 (Crime Rate)
 
-Political Preferences: MİLLETİTTİFAKİ, CUMHURİTTİFAKİ, ATAİTTİFAKİ, EMEKVEOZGURLUK (Election results 2023)
+KAZASAYİSİ2023 (Accident Number)
+
+Culture/Arts:
+
+TİYATRO2023 (Theater Number)
+
+Climate:
+
+İKLİMOCAK, …, İKLİMARALİK (Monthly average temperatures from January to December)
+
+Political Preferences:
+
+MİLLETİTTİFAKİ, CUMHURİTTİFAKİ, ATAİTTİFAKİ, EMEKVEOZGURLUK (Election results 2023)
 
 2. What is Cosine Similarity?
-
 We use cosine similarity to compare your selected city with others.
-Cosine similarity calculates a score between 0 and 1 based on how similar the city’s data vectors are.
-1 means very similar, 0 means very different.
-
-3. Step-by-Step Example Calculation
-
-A. Gather Data for Each City
-
-Example, for "Socioeconomic" group:
-Istanbul: [0.80, 0.20, 0.97, 0.99]
-Ankara: [0.65, 0.23, 0.95, 0.75]
-Here each value is the GDP, UNEMPLOYMENT, LITERACY RATE and POPULATION value of each city respectively. 
-All these values ​​are combined in an array.
-
-B. Dot Product: (0.80 × 0.65) + (0.20 × 0.23) + (0.97 × 0.95) + (0.99 × 0.75) = 2.23
-
-C. Vector Lengths:
-
-Istanbul: √(0.80² + 0.20² + 0.97² + 0.99²) ≈ 1.61
-Ankara: √(0.65² + 0.23² + 0.95² + 0.75²) ≈ 1.39
-
-D. Cosine Similarity Formula:
-
-Cosine Similarity = 2.23 / (1.61 × 1.39) ≈ 0.995
-So, similarity is 99.5%.
-
-4. How Does Weighted Similarity Work?
-
-You can select how important each group is for you (from 0 to 5).
-For each group, cosine similarity is calculated separately and multiplied by your importance (weight).
-
-Example:
-
-Socioeconomic: Similarity 0.995, Weight: 5
-Healthcare: Similarity 0.91, Weight: 3
-Safety: Similarity 0.60, Weight: 1
-
-Weighted Score:
-
-Weighted Score = (0.995 × 5) + (0.91 × 3) + (0.60 × 1) / (5 + 3 + 1)
-
-Your results are shaped by your personal preferences.
-
-5. In Summary
-
-Every city is compared with 6 main groups and 20+ features.
-Cosine similarity is calculated for each group.
-You can set each group's importance (0-5) and see "Weighted Similarity" results.
-Results are shown as percentages and on the graph.
-
-6. What is Equal Similarity?
-When you use the "Equal Similarity" option, the system compares your selected city to all other cities by
-considering all available data groups equally.
-You do not need to choose any priorities or weights.
-
-How Does It Work?
-All Data Combined:
-For each city, we gather all available information (such as economy, population, education, healthcare,
-safety, culture, climate, and political preferences).
-All these numbers are combined into a single list of values for each city.
-
-No Group Has Extra Importance:
-Each group (for example, “healthcare” or “climate”) is considered just as important as every other group.
-No group has more effect on the result than the others.
-
-Cosine Similarity Calculation:
-We use a mathematical method called cosine similarity.
-This method compares the lists of numbers for two cities and gives a score between 0 and 1:
+Cosine similarity is a mathematical method that calculates a score between 0 and 1 based on how similar two cities’ feature vectors are:
 
 1 means the cities are very similar.
 
 0 means the cities are very different.
 
+3. Step-by-Step Example Calculation
+A. Gather Data for Each City:
+For example, in the “Socioeconomic” group, we collect these values for each city:
+
+Istanbul: [0.80, 0.20, 0.97, 0.99]
+
+Ankara: [0.65, 0.23, 0.95, 0.75]
+
+Each number represents GDP, Unemployment, Literacy Rate, and Population, in that order.
+
+B. Dot Product:
+Multiply the corresponding values and add them up:
+(0.80 × 0.65) + (0.20 × 0.23) + (0.97 × 0.95) + (0.99 × 0.75) = 2.23
+
+C. Vector Lengths:
+
+Istanbul: √(0.80² + 0.20² + 0.97² + 0.99²) ≈ 1.61
+
+Ankara: √(0.65² + 0.23² + 0.95² + 0.75²) ≈ 1.39
+
+D. Cosine Similarity Formula:
+Cosine Similarity = 2.23 / (1.61 × 1.39) ≈ 0.995
+So, similarity is 99.5%.
+
+4. How Does Weighted Similarity Work?
+You can customize the importance of each group (from 0 to 5).
+For each group, cosine similarity is calculated separately and multiplied by your chosen importance (weight).
+
+Example:
+
+Socioeconomic: Similarity 0.995, Weight: 5
+
+Healthcare: Similarity 0.91, Weight: 3
+
+Safety: Similarity 0.60, Weight: 1
+
+Weighted Score:
+Weighted Score = (0.995 × 5) + (0.91 × 3) + (0.60 × 1) / (5 + 3 + 1)
+
+Your results are shaped by your personal preferences.
+
+5. What is Equal Similarity?
+When you use the "Equal Similarity" option, the system compares your selected city to all other cities by considering all available data groups equally.
+You do not need to choose any priorities or weights—every group is treated as equally important.
+
+How Does Equal Similarity Work?
+All Data Combined:
+For each city, all features (economy, population, education, healthcare, safety, culture, climate, political preferences, etc.) are gathered and combined into a single list of values.
+
+No Group Has Extra Importance:
+Each group is considered just as important as every other group.
+No group has more effect on the result than the others.
+
+Cosine Similarity Calculation:
+We calculate cosine similarity between your chosen city and all others, using all combined data.
+The resulting score tells us how close each city is to yours (between 0 and 1).
+
 What Does the Result Mean?
-The system shows you a list of cities that are most similar to your chosen city.
-This is based on all features, with no group being more important than another.
+You will see a list of cities that are most similar to your chosen city, based on all features, with no extra weighting.
 
 When Should I Use Equal Similarity?
-
 If you want an overall comparison using all available data,
 
 If you do not want to set your own priorities,
 
-If you are curious which cities are most similar in general,
+If you are curious about which cities are generally most similar,
 
 …then “Equal Similarity” is the best choice for you!
 
 Summary:
-With “Equal Similarity,” you get a general, unbiased comparison of all cities, based on all the features in our database.
+With “Equal Similarity,” you get a general, unbiased comparison of all cities, based on every feature in our database.
 No extra settings are needed.
-Just select your city and see which other cities are most similar to it—using all the data, equally!
+Just select your city and see which other cities are most similar—using all the data, equally!
 
 Tip:
 If you want to customize the importance of each group (for example, if “climate” matters most to you), try the “Weighted Similarity” option instead.`}
