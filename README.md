@@ -17,13 +17,21 @@ Users can explore two types of similarity:
 ## ✨ Features
 
 -🔍 City Similarity Detection using precomputed cosine similarity metrics
+
 -🎛️ Weighted Similarity with sliders (0–5 scale) for personal prioritization
+
 -📈 Equal Similarity option with no need for manual weighting
+
 -📊 Bar chart visualization of the Top 5 most similar cities
+
 -🔁 Real-time validation to prevent calculation if the weights sum to 0
+
 -📘 Interactive Info Box that explains how similarity is calculated (step-by-step)
+
 -🧩 Built with Material UI and Recharts
+
 -📱 Fully responsive design for desktop and mobile
+
 -🌐 Deployed on GitHub Pages
 
 ---
