@@ -1,6 +1,12 @@
 # 🌆 Distant Neighbors – City Similarity Recommendation App
 
-This React-based application helps users discover cities in Turkey that are socioeconomically and demographically similar to their current city. By selecting personal preferences and distributing importance across various criteria, users receive a recommendation based on a cosine similarity matrix.
+This React-based web application allows users in Turkey to find other cities that are most similar to their current city based on a combination of socioeconomic, demographic, political, and environmental indicators.
+
+Users can explore two types of similarity:
+
+- Equal Similarity: All features are treated equally.
+
+- Weighted Similarity: Users can prioritize specific groups like climate, healthcare, or safety.
 
 ## 🚀 Live Demo
 
@@ -10,12 +16,15 @@ This React-based application helps users discover cities in Turkey that are soci
 
 ## ✨ Features
 
-- 🔍 **City Similarity Detection** using a pre-calculated cosine similarity matrix
-- 🎚️ **Weight Input** for prioritizing criteria
-- 🔒 **Total Score Validation** – Enforces 100-point total requirement
-- 🧩 **Material UI Components** for clean and responsive design
-- 📱 **Responsive Layout** – Optimized for desktop and mobile
-- 🌐 **Hosted via GitHub Pages**
+-🔍 City Similarity Detection using precomputed cosine similarity metrics
+-🎛️ Weighted Similarity with sliders (0–5 scale) for personal prioritization
+-📈 Equal Similarity option with no need for manual weighting
+-📊 Bar chart visualization of the Top 5 most similar cities
+-🔁 Real-time validation to prevent calculation if the weights sum to 0
+-📘 Interactive Info Box that explains how similarity is calculated (step-by-step)
+-🧩 Built with Material UI and Recharts
+-📱 Fully responsive design for desktop and mobile
+-🌐 Deployed on GitHub Pages
 
 ---
 
@@ -48,17 +57,6 @@ The app will run locally at: `http://localhost:3000`
 
 ---
 
-## 🧠 How It Works
-
-- The cosine similarity matrix is stored in `/public/cosine_similarity_matrix.json`
-- Users input a city name and assign weights (0–100) to various quality-of-life indicators.
-- When submitted, the app:
-  - Validates that total weight equals 100
-  - Finds the most similar city using the cosine similarity data
-  - Displays the closest match with a similarity percentage
-
----
-
 ## ⚙️ Deployment (GitHub Pages)
 To build and deploy the app:
 
@@ -75,7 +73,6 @@ Then run:
 ```bash
 npm run deploy
 ```
-This will publish your app to GitHub Pages automatically.
 
 ---
 
@@ -83,17 +80,18 @@ This will publish your app to GitHub Pages automatically.
 ```
 distant-neighbors/
 ├── public/
-│   └── cosine_similarity_matrix.json
+│   ├── cosine_similarity_matrix_new.json       # Equal similarity data
+│   └── city_features_by_city.json              # Feature data grouped by city
 ├── src/
-│   ├── App.js           # Main application UI and logic
-│   ├── App.css          # Custom styles
-│   └── index.js         # React entry point
+│   ├── App.js                                   # Main app logic and UI
+│   ├── App.css                                  # Custom styles
+│   └── index.js                                 # React entry point
 ├── package.json
 └── README.md
+
 ```
 
----
-
 ## 👩‍💻 Developed by
-**Nida Kayaduman** – Computer Engineering 
+**Nida Kayaduman** – Computer Science & Engineering, Sabancı University
+
 
